@@ -38,10 +38,7 @@ def download_nltk_resources():
         version.parse(nltk_version) >= version.parse(NLTK_MIN_VERSION)
     ), f"`nltk` version {nltk_version} is not >= {NLTK_MIN_VERSION}. Please update `nltk` before proceeding--older versions are vulnerable to a remote code execution vulnerability."
 
-    try:
-        nltk.data.find("tokenizers/punkt_tab")
-    except LookupError:
-        nltk.download("punkt_tab")
+    nltk.download("punkt_tab", enforce=True)
 
 
 download_nltk_resources()
