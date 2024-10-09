@@ -38,7 +38,7 @@ def download_nltk_resources():
         version.parse(nltk_version) >= version.parse(NLTK_MIN_VERSION)
     ), f"`nltk` version {nltk_version} is not >= {NLTK_MIN_VERSION}. Please update `nltk` before proceeding--older versions are vulnerable to a remote code execution vulnerability."
 
-    nltk.download("punkt_tab", enforce=True)
+    nltk.download("punkt_tab", force=True)
 
 
 download_nltk_resources()
