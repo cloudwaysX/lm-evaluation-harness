@@ -38,7 +38,17 @@ def download_nltk_resources():
         version.parse(nltk_version) >= version.parse(NLTK_MIN_VERSION)
     ), f"`nltk` version {nltk_version} is not >= {NLTK_MIN_VERSION}. Please update `nltk` before proceeding--older versions are vulnerable to a remote code execution vulnerability."
 
-    nltk.download("punkt_tab", force=True)
+    # Location where nltk data is stored (adjust as necessary based on your nltk.data.path output)
+    nltk_data_dir = nltk.data.path[0]
+    tokenizer_path = os.path.join(nltk_data_dir, 'tokenizers')
+    
+    # Deleting the tokenizer directory
+    if os.path.exists(tokenizer_path):
+        import shutil
+        shutil.rmtree(tokenizer_path)
+    
+    # Try downloading again
+    nltk.download('punkt', force=True)
 
 
 download_nltk_resources()
